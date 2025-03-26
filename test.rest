@@ -1,0 +1,124 @@
+### Get all spells
+GET http://localhost:3000/spells
+Content-Type: application/json
+
+###
+
+### Get a spell by ID
+GET http://localhost:3000/spells/67df18c1fcd915b941f8df1a
+Content-Type: application/json
+
+###
+
+### Create a new spell
+POST http://localhost:3000/spells
+Content-Type: application/json
+
+{
+    "name": "Fireball",
+    "manaCost": 10,
+    "school": "Evocation",
+    "proficiencyLevel": 5,
+    "range": 60,
+    "cooldown": 5,
+    "effects": {
+        "damage": 10,
+        "damageOverTime": 0,
+        "heal": 0,
+        "duration": 0,
+        "areaOfEffectRadius": 0,
+        "knockback": false,
+        "stun": false
+    },
+    "description": "A ball of fire that explodes on impact, dealing damage to all enemies in the area of effect.",
+    "tags": ["fire", "damage", "aoe"]
+}
+
+
+###
+
+### Update a spell
+
+PUT http://localhost:3000/spells/67df18c1fcd915b941f8df1a
+Content-Type: application/json
+
+{
+  "name": "Lightning Bolt",
+  "manacost": 30,
+  "school": "Destruction",
+  "proficiencyLevel": 5,
+  "range": 120,
+  "cooldown": 8,
+  "effects": {
+    "damageOverTime": 0,
+    "heal": 0,
+    "duration": 0,
+    "areaOfEffectRadius": 0,
+    "knockback": false,
+    "stun": false,
+    "damage": 75,
+    "stunDuration": 0
+    },
+  "description": "A powerful bolt of lightning that deals 60 points of damage and briefly stuns the target for 2 seconds.",
+  "tags": [
+    "Lightning",
+    "Stun",
+    "High Damage"
+  ]
+}
+
+
+###
+
+### Delete a spell
+DELETE http://localhost:3000/spells/67e33b7b66dc9d6eda8d5b69
+
+
+### SPELLCASTERS COLLECTION TESTING
+
+
+### Get all spellcasters
+GET http://localhost:3000/spellcasters
+Content-Type: application/json
+
+###
+
+### Get a spellcaster by ID
+GET http://localhost:3000/spellcasters/67e331d4ad7fb05f3a139d12
+Content-Type: application/json
+
+###
+
+### Create a new spellcaster
+POST http://localhost:3000/spellcasters
+Content-Type: application/json
+
+{
+  "name": "Merlin the Magnificent",
+  "title": "Archmage of the Enchanted Forest",
+  "specialty": "Elemental",
+  "proficiencyLevel": 95,
+  "backstory": "Unknown"
+}
+
+
+###
+
+### Update a spellcaster
+
+PUT http://localhost:3000/spellcasters/67e33c24839654546bab8c07
+Content-Type: application/json
+
+{
+  "name": "Merlin the Old",
+  "title": "Archmage of the Enchanted Forest",
+  "specialty": "Elemental",
+  "proficiencyLevel": 95,
+  "backstory": "Unknown"
+}
+
+
+###
+
+### Delete a spellcaster
+DELETE http://localhost:3000/spellcasters/67e33c24839654546bab8c07

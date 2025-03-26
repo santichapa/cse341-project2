@@ -11,7 +11,13 @@ const spells = require("../controllers/spells");
  *       200:
  *         description: A list of spells
  */
-router.get("/", spells.getAllSpells);
+router.get("/", async (req, res) => {
+    try {
+        await spells.getAllSpells(req, res);
+    } catch (error) {
+        res.status(500).json({ error: "Failed to retrieve spells" });
+    }
+});
 
 /**
  * @swagger
@@ -29,7 +35,13 @@ router.get("/", spells.getAllSpells);
  *       200:
  *         description: A spell object
  */
-router.get("/:id", spells.getSpellById);
+router.get("/:id", async (req, res) => {
+    try {
+        await spells.getSpellById(req, res);
+    } catch (error) {
+        res.status(500).json({ error: "Failed to retrieve the spell" });
+    }
+});
 
 /**
  * @swagger
@@ -55,7 +67,13 @@ router.get("/:id", spells.getSpellById);
  *       201:
  *         description: Spell created successfully
  */
-router.post("/", spells.createSpell);
+router.post("/", async (req, res) => {
+    try {
+        await spells.createSpell(req, res);
+    } catch (error) {
+        res.status(500).json({ error: "Failed to create the spell" });
+    }
+});
 
 /**
  * @swagger
@@ -88,7 +106,13 @@ router.post("/", spells.createSpell);
  *       200:
  *         description: Spell updated successfully
  */
-router.put("/:id", spells.updateSpell);
+router.put("/:id", async (req, res) => {
+    try {
+        await spells.updateSpell(req, res);
+    } catch (error) {
+        res.status(500).json({ error: "Failed to update the spell" });
+    }
+});
 
 /**
  * @swagger
@@ -106,6 +130,12 @@ router.put("/:id", spells.updateSpell);
  *       200:
  *         description: Spell deleted successfully
  */
-router.delete("/:id", spells.deleteSpell);
+router.delete("/:id", async (req, res) => {
+    try {
+        await spells.deleteSpell(req, res);
+    } catch (error) {
+        res.status(500).json({ error: "Failed to delete the spell" });
+    }
+});
 
 module.exports = router;

@@ -11,7 +11,14 @@ const casters = require("../controllers/spellcasters");
  *       200:
  *         description: A list of spellcasters
  */
-router.get("/", casters.getAllSpellcasters);
+router.get("/", async (req, res) => {
+    try {
+        await casters.getAllSpellcasters(req, res);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: "Internal Server Error" });
+    }
+});
 
 /**
  * @swagger
@@ -22,7 +29,14 @@ router.get("/", casters.getAllSpellcasters);
  *       200:
  *         description: A spellcaster
  */
-router.get("/:id", casters.getSpellcasterById);
+router.get("/:id", async (req, res) => {
+    try {
+        await casters.getSpellcasterById(req, res);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: "Internal Server Error" });
+    }
+});
 
 /**
  * @swagger
@@ -50,7 +64,19 @@ router.get("/:id", casters.getSpellcasterById);
  *       201:
  *         description: Spellcaster created successfully
  */
-router.post("/", casters.createSpellcaster);
+router.post("/", async (req, res) => {
+    try {
+        const { name, title } = req.body;
+        if (!name || !title) {
+            return res.status(400).json({ error: "Name and title are required" });
+        }
+        // Logic to create a spellcaster
+        res.status(201).json({ message: "Spellcaster created successfully" });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: "Internal Server Error" });
+    }
+});
 
 /**
  * @swagger
@@ -78,7 +104,14 @@ router.post("/", casters.createSpellcaster);
  *       200:
  *         description: Spellcaster updated successfully
  */
-router.put("/:id", casters.updateSpellcaster);
+router.put("/:id", async (req, res) => {
+    try {
+        await casters.updateSpellcaster(req, res);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: "Internal Server Error" });
+    }
+});
 
 /**
  * @swagger
@@ -89,6 +122,13 @@ router.put("/:id", casters.updateSpellcaster);
  *       200:
  *         description: Spellcaster deleted successfully
  */
-router.delete("/:id", casters.deleteSpellcaster);
+router.delete("/:id", async (req, res) => {
+    try {
+        await casters.deleteSpellcaster(req, res);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: "Internal Server Error" });
+    }
+});
 
 module.exports = router;

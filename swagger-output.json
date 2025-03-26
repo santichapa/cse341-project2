@@ -9,7 +9,7 @@
   "basePath": "/",
   "schemes": [
     "https",
-    "http" 
+    "http"
   ],
   "paths": {
     "/": {
@@ -36,15 +36,33 @@
       },
       "post": {
         "description": "",
+        "parameters": [
+          {
+        "name": "body",
+        "in": "body",
+        "required": true,
+        "schema": {
+          "type": "object",
+          "properties": {
+            "name": { "type": "string" },
+            "title": { "type": "string" },
+            "specialty": { "type": "string" },
+            "proficiencyLevel": { "type": "number", "minimum": 1 },
+            "backstory": { "type": "string", "default": "Unknown" }
+          },
+          "required": ["name", "title", "specialty", "proficiencyLevel"]
+        }
+          }
+        ],
         "responses": {
           "201": {
-            "description": "Created"
+        "description": "Created"
           },
           "400": {
-            "description": "Bad Request"
+        "description": "Bad Request"
           },
           "500": {
-            "description": "Internal Server Error"
+        "description": "Internal Server Error"
           }
         }
       }
@@ -76,10 +94,20 @@
         "description": "",
         "parameters": [
           {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "type": "string"
+        "name": "body",
+        "in": "body",
+        "required": true,
+        "schema": {
+          "type": "object",
+          "properties": {
+            "name": { "type": "string" },
+            "title": { "type": "string" },
+            "specialty": { "type": "string" },
+            "proficiencyLevel": { "type": "number", "minimum": 1 },
+            "backstory": { "type": "string", "default": "Unknown" }
+          },
+          "required": ["name", "title", "specialty", "proficiencyLevel"]
+        }
           }
         ],
         "responses": {
@@ -131,6 +159,39 @@
       },
       "post": {
         "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": { "type": "string" },
+                "manaCost": { "type": "number", "minimum": 0 },
+                "school": { "type": "string" },
+                "proficiencyLevel": { "type": "number", "minimum": 0 },
+                "range": { "type": "number", "minimum": 0 },
+                "cooldown": { "type": "number", "minimum": 0 },
+                "effects": {
+                  "type": "object",
+                  "properties": {
+                    "damage": { "type": "number", "default": 0, "minimum": 0 },
+                    "damageOverTime": { "type": "number", "default": 0, "minimum": 0 },
+                    "heal": { "type": "number", "default": 0, "minimum": 0 },
+                    "duration": { "type": "number", "default": 0, "minimum": 0 },
+                    "areaOfEffectRadius": { "type": "number", "default": 0, "minimum": 0 },
+                    "knockback": { "type": "boolean", "default": false },
+                    "stun": { "type": "boolean", "default": false }
+                  }
+                },
+                "description": { "type": "string" },
+                "tags": { "type": "array", "items": { "type": "string" } }
+              },
+              "required": ["name", "manaCost", "school", "proficiencyLevel", "range", "cooldown", "description", "tags"]
+            }
+          }
+        ],
         "responses": {
           "201": {
             "description": "Created"
@@ -175,6 +236,37 @@
             "in": "path",
             "required": true,
             "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": { "type": "string" },
+                "manaCost": { "type": "number", "minimum": 0 },
+                "school": { "type": "string" },
+                "proficiencyLevel": { "type": "number", "minimum": 0 },
+                "range": { "type": "number", "minimum": 0 },
+                "cooldown": { "type": "number", "minimum": 0 },
+                "effects": {
+                  "type": "object",
+                  "properties": {
+                    "damage": { "type": "number", "default": 0, "minimum": 0 },
+                    "damageOverTime": { "type": "number", "default": 0, "minimum": 0 },
+                    "heal": { "type": "number", "default": 0, "minimum": 0 },
+                    "duration": { "type": "number", "default": 0, "minimum": 0 },
+                    "areaOfEffectRadius": { "type": "number", "default": 0, "minimum": 0 },
+                    "knockback": { "type": "boolean", "default": false },
+                    "stun": { "type": "boolean", "default": false }
+                  }
+                },
+                "description": { "type": "string" },
+                "tags": { "type": "array", "items": { "type": "string" } }
+              },
+              "required": ["name", "manaCost", "school", "proficiencyLevel", "range", "cooldown", "description", "tags"]
+            }
           }
         ],
         "responses": {

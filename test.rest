@@ -39,7 +39,7 @@ Content-Type: application/json
 
 ### Update a spell
 
-PUT http://localhost:3000/spells/67df18c1fcd915b941f8df1a
+PUT http://localhost:3000/spells/67e38be4a120078fc6a3eb00
 Content-Type: application/json
 
 {
@@ -71,7 +71,7 @@ Content-Type: application/json
 ###
 
 ### Delete a spell
-DELETE http://localhost:3000/spells/67e33b7b66dc9d6eda8d5b69
+DELETE http://localhost:3000/spells/67e33af53836e2e3efbb3851
 
 
 ### SPELLCASTERS COLLECTION TESTING
@@ -106,7 +106,7 @@ Content-Type: application/json
 
 ### Update a spellcaster
 
-PUT http://localhost:3000/spellcasters/67e33c24839654546bab8c07
+PUT http://localhost:3000/spellcasters/67e38ba5a120078fc6a3eaf7
 Content-Type: application/json
 
 {
@@ -121,4 +121,4 @@ Content-Type: application/json
 ###
 
 ### Delete a spellcaster
-DELETE http://localhost:3000/spellcasters/67e33c24839654546bab8c07
+DELETE http://localhost:3000/spellcasters/67e38ba5a120078fc6a3eaf7

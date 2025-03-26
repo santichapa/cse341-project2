@@ -66,12 +66,7 @@ router.get("/:id", async (req, res) => {
  */
 router.post("/", async (req, res) => {
     try {
-        const { name, title } = req.body;
-        if (!name || !title) {
-            return res.status(400).json({ error: "Name and title are required" });
-        }
-        // Logic to create a spellcaster
-        res.status(201).json({ message: "Spellcaster created successfully" });
+        await casters.createSpellcaster(req, res);
     } catch (error) {
         console.error(error);
         res.status(500).json({ error: "Internal Server Error" });

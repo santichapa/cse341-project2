@@ -9,7 +9,6 @@ mongodb.connectDB();
 
 app.use(express.json());
 
-app.use('/api-docs', require('./routes/swagger'));
 app.use('/spellcasters', require('./routes/spellcasters'));
 app.use('/spells', require('./routes/spells'));
 

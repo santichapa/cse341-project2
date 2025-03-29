@@ -1,6 +1,8 @@
 const express = require("express");
 const router = express.Router();
 const spells = require("../controllers/spells");
+const isAuthenticated = require("../middleware/authenticate");
+const { validateSpell } = require("../middleware/validate");
 
 /**
  * @swagger
@@ -67,7 +69,7 @@ router.get("/:id", async (req, res) => {
  *       201:
  *         description: Spell created successfully
  */
-router.post("/", async (req, res) => {
+router.post("/", isAuthenticated, validateSpell, async (req, res) => {
     try {
         await spells.createSpell(req, res);
     } catch (error) {
@@ -106,7 +108,7 @@ router.post("/", async (req, res) => {
  *       200:
  *         description: Spell updated successfully
  */
-router.put("/:id", async (req, res) => {
+router.put("/:id", isAuthenticated, validateSpell, async (req, res) => {
     try {
         await spells.updateSpell(req, res);
     } catch (error) {
@@ -130,7 +132,7 @@ router.put("/:id", async (req, res) => {
  *       200:
  *         description: Spell deleted successfully
  */
-router.delete("/:id", async (req, res) => {
+router.delete("/:id", isAuthenticated, async (req, res) => {
     try {
         await spells.deleteSpell(req, res);
     } catch (error) {

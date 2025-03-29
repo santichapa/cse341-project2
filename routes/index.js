@@ -10,9 +10,14 @@ router.use('/login', passport.authenticate('github', { session: false }), (req, 
 router.use('/logout', (req, res) => {
     req.logout((err) => {
         if (err) {
-            return res.status(500).send('Error logging out');
+            return res.status(500).json({ error: "Failed to log out" });
         }
-        res.redirect('/');
+        req.session.destroy((err) => {
+            if (err) {
+                return res.status(500).json({ error: "Failed to destroy session" });
+            }
+            res.redirect('/');
+        });
     });
 });
 

@@ -5,6 +5,7 @@ const PORT = process.env.PORT || 3000;
 const mongodb = require("./config/db");
 const passport = require("passport");
 const session = require("express-session");
+const MongoStore = require("connect-mongo");
 const githubStrategy = require("passport-github2").Strategy;
 
 dotenv.config();
@@ -16,6 +17,10 @@ app
     secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: true,
+    store: MongoStore.create({
+      mongoUrl: process.env.MONGO_URI,
+      collectionName: "sessions"
+    }),
   }))
   .use(passport.initialize())
   .use(passport.session());
@@ -51,11 +56,11 @@ passport.deserializeUser((user, done) => {
 app.get("/", (req, res) => {
   res.send(req.user !== undefined ? `Logged in. Hello ${req.user.username}!` : "Logged out.");
 });
+
 app.get(
   "/auth/github/callback",
   passport.authenticate("github", { failureRedirect: "/api-docs"}),
   (req, res) => {
-    req.session.user = req.user;
     res.redirect("/");
   }
 );
